@@ -9,14 +9,13 @@ class LandingPage extends CommonPage {
         this.$profileButton = () => $('(//div[@class="max-w-container mx-auto"]//div[@class="relative"])[2]'); 
         this.$loginButton = () => $('//li[text()="Login"]/..');
         this.$loginForm = (name) => $(`//input[@id="${name}"]`);
-        // this.$submitLoginButton = () => $(`//button[text()="Login"]`);
         this.$profileFloat = () => $('//p[text()="Profile"]/../parent::a');
 		this.$navItem=(item)=>$(`//a[text()="${item}"]/..`);
 		this.$cartHeader=()=>$('//h1[text()="Products"]');
         this.$searchBox=()=>$('//input[@placeholder="Search your products here"]');
         this.$searchBoxProduct=(product)=>$(`//p[text()="${product}"]/../..`);
         this.$shopByCategory = ()=>$('//p[text()="Shop by Category"]/../..');
-        this.$selectCategory=(category)=>$('//li[text()="${category}"]/..');
+        this.$selectCategory=(category)=>$(`//li[text()="${category}"]/..` );
         this.$randomProductHeader=()=>$('//h1');
         this.$productHeader=(product)=>$(`//h1[text()="${product}"]`);
         this.$newArriveProduct=()=>$('(//div[text()="Our Bestsellers"]/..//h2/../../..)[1]');
@@ -30,7 +29,7 @@ class LandingPage extends CommonPage {
  */
 
     /**
-     * Clicking on the Profile Button then Login Button and fill data to the textbox and clicking on login button
+     * Clicking on the "Profile Button" then "Login Button" and fill data to the textbox and clicking on login button
      */
     async login() {
         await this.elementClick(this.$profileButton());
@@ -38,13 +37,11 @@ class LandingPage extends CommonPage {
         await this.inputTextbox(this.$loginForm('email'), 'optimalaces.2001@gmail.com');
         await this.inputTextbox(this.$loginForm('password'), 'Password@123');
         await this.buttonClick(this.$commonButton("Login"));
-        // await this.spinnerWait();
-		await this.$profileFloat().waitForDisplayed({  timeoutMsg: 'Login was unsuccessful' });
+	await this.$profileFloat().waitForDisplayed({  timeoutMsg: 'Login was unsuccessful' });
     }
 
-/**
-* Methods
-*/
+
+// Methods
 
     /**
      * Clicking on item from navigation bar
@@ -52,7 +49,6 @@ class LandingPage extends CommonPage {
      */
 	async clickNavItem(item){
 		await this.elementClick(this.$navItem(item));
-        // await this.spinnerWait();
 	}
     /**
      * Search for a product in search bar
@@ -82,7 +78,7 @@ class LandingPage extends CommonPage {
         await this.$randomProductHeader().waitForDisplayed({ timeoutMsg: 'Product not displayed' });
     }
     /**
-     * Selecting the Category banner in homepage and clicking on the Shop now button from the banner
+     * Selecting the "Category banner" in homepage and clicking on the "Shop now" button from the banner
      * @param {*} category 
      */  
     async selectCategoryShopNow(category){
