@@ -10,8 +10,8 @@ class LandingPage extends CommonPage {
         this.$loginButton = () => $('//li[text()="Login"]/..');
         this.$loginForm = (name) => $(`//input[@id="${name}"]`);
         this.$profileFloat = () => $('//p[text()="Profile"]/../parent::a');
-		this.$navItem=(item)=>$(`//a[text()="${item}"]/..`);
-		this.$cartHeader=()=>$('//h1[text()="Products"]');
+	this.$navItem=(item)=>$(`//a[text()="${item}"]/..`);
+	this.$cartHeader=()=>$('//h1[text()="Products"]');
         this.$searchBox=()=>$('//input[@placeholder="Search your products here"]');
         this.$searchBoxProduct=(product)=>$(`//p[text()="${product}"]/../..`);
         this.$shopByCategory = ()=>$('//p[text()="Shop by Category"]/../..');
