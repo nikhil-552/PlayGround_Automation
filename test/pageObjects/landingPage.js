@@ -34,8 +34,8 @@ class LandingPage extends CommonPage {
     async login() {
         await this.elementClick(this.$profileButton());
         await this.elementClick(this.$loginButton());
-        await this.inputTextbox(this.$loginForm('email'), 'optimalaces.2001@gmail.com');
-        await this.inputTextbox(this.$loginForm('password'), 'Password@123');
+        await this.inputTextbox(this.$loginForm('email'), 'testData.email');
+        await this.inputTextbox(this.$loginForm('password'), 'testData.password');
         await this.buttonClick(this.$commonButton("Login"));
 	await this.$profileFloat().waitForDisplayed({  timeoutMsg: 'Login was unsuccessful' });
     }
