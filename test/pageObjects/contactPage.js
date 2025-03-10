@@ -17,10 +17,9 @@ class ContactPage extends CommonPage {
 	
 /**
  * Filling the form in contact Page
- * @param {FormHeader} formName 
- * @param {FormValue} formValue 
+ * @param {string} formName 
+ * @param {strirng} formValue 
  */
-
 	async fillContactForm(formName, formValue) {
 		let length =testData.ContactForms.length;
 		for (let i = 0; i < length; i++) {
