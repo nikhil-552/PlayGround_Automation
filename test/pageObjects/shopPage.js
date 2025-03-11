@@ -6,13 +6,14 @@ class ShopPage extends CommonPage {
 		/**
 		 * Element
 		 */
-		this.$filterCategory=(category)=>$(`//span[text()="Shop by ${category}"]/..`);
-		this.$filterOptions=(option)=>$(`//input[@id="${option}"]`);
-		this.$$productsName=()=>$$(`//h2[@class="text-lg font-bold text-gray-800"]`);
+		this.$filterCategory = (category) => $(`//span[text()="Shop by ${category}"]/..`);
+		this.$filterOptions = (option) => $(`//input[@id="${option}"]`);
+		this.$$productsName = () => $$('//h2[@class="text-lg font-bold text-gray-800"]');
 	}
-/**
- * Methods
- */
+	/**
+	 * Methods
+	 */
+
 	/**
 	 * Filter the products by category and option
 	 * @param {string} category - The category to filter by
@@ -21,7 +22,7 @@ class ShopPage extends CommonPage {
 	async filterProducts(category, option) {
 		await this.elementClick(this.$filterCategory(category));
 		await this.elementClick(this.$filterOptions(option));
-		await this.$$productsName()[0].waitForDisplayed({  timeoutMsg: 'Products not displayed' });
+		await this.$$productsName()[0].waitForDisplayed({ timeoutMsg: 'Products not displayed' });
 		await this.spinnerWait();
 		const products = await this.$$productsName();
 		if (products.length === 0) {
@@ -32,10 +33,9 @@ class ShopPage extends CommonPage {
 			let name = await product.getText();
 			names.push(name);
 		}
-	
 		return names;
 	}
-	
+
 
 }
 

@@ -10,11 +10,15 @@ class CategoryPage extends CommonPage {
 		this.$addCartAlert = () => $('//div[@role="alert"]//div[text()="Added Successfully!"]');
 	}
 	/**
+	 * Methods
+	 */
+	
+	/**
 	 * Add product to cart from selected category
 	 */
 	async addProductToCart() {
 		await this.buttonClick(this.$$productAddCart()[0]);
-		await this.$addCartAlert().waitForDisplayed({  timeoutMsg: 'Added to cart alert not displayed' });
+		await this.$addCartAlert().waitForDisplayed({ timeoutMsg: 'Added to cart alert not displayed' });
 	}
 }
 export default new CategoryPage();

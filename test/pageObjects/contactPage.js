@@ -7,26 +7,26 @@ class ContactPage extends CommonPage {
 		/**
 		 * Elements
 		 */
-		this.$formBoxes=(box)=>$(`//p[text()="${box}"]/..//input`);
-		this.$messageBox=()=>$('//p[text()="Messages"]/..//textarea');
-		this.$thankYouMessage=()=>$('//p[contains(text(),"Thank you")]');
+		this.$formBoxes = (box) => $(`//p[text()="${box}"]/..//input`);
+		this.$messageBox = () => $('//p[text()="Messages"]/..//textarea');
+		this.$thankYouMessage = () => $('//p[contains(text(),"Thank you")]');
 	}
-/**
- * Methods
- */
 	
-/**
- * Filling the form in contact Page
- * @param {string} formName 
- * @param {strirng} formValue 
- */
-	async fillContactForm(formName, formValue) {
-		let length =testData.ContactForms.length;
+	/**
+	 * Methods
+	 */
+	/**
+	 * Filling the form in contact Page
+	 * @param {string} formName 
+	 * @param {string} formValue 
+	 */
+	async fillContactForm() {
+		let length = testData.ContactForms.length;
 		for (let i = 0; i < length; i++) {
-			await this.inputTextbox(this.$formBoxes(testData.ContactForms[i]),testData.ContactData[i]);
+			await this.inputTextbox(this.$formBoxes(testData.ContactForms[i]), testData.ContactData[i]);
 		}
-		await this.inputTextbox(this.$messageBox(),testData.ContactData[2]);
-		await this.buttonClick(this.$commonButton("Post"));
+		await this.inputTextbox(this.$messageBox(), testData.ContactData[2]);
+		await this.buttonClick(this.$button("Post"));
 		await this.$thankYouMessage().waitForDisplayed({ timeoutMsg: 'Message not displayed' });
 	}
 }

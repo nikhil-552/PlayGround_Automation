@@ -15,9 +15,9 @@ class CartPage extends CommonPage {
 		this.$subtotal = () => $('//p[text()="Subtotal"]/span/text()[2]');
 	}
 
-/**
- * Methods
- */
+	/**
+	 * Methods
+	 */
 
 	/**
 	 * Navigate to the cart page
@@ -45,7 +45,7 @@ class CartPage extends CommonPage {
 	 * Resetting the cart 
 	 */
 	async resetCart() {
-		await this.elementClick(this.$commonButton("Reset cart"));
+		await this.elementClick(this.$button("Reset cart"));
 		await this.$commonHeader("Your Cart feels lonely.").waitForDisplayed({ timeoutMsg: 'Expect cart header should displayed' });
 	}
 
@@ -53,10 +53,10 @@ class CartPage extends CommonPage {
 	 * Clicking on proceed to checkout
 	 */
 	async proceedToCheckout() {
-		await this.elementClick(this.$commonButton("Proceed to Checkout"));
+		await this.elementClick(this.$button("Proceed to Checkout"));
 		await this.$commonHeader("Payment Gateway").waitForDisplayed({ timeoutMsg: 'Expect checkout header should displayed' });
 	}
-	
+
 	/**
 	 * Calculating the total product price
 	 * @returns {boolean} 
