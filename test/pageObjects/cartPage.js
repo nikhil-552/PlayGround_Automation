@@ -28,21 +28,21 @@ class CartPage extends CommonPage {
 	}
 
 	/**
-	 * Changing the quantity of the product added to the cart by clicking + 0r - buttons
+	 * Changing the quantity of the product added to the cart by clicking + or - buttons
 	 * @param {string} change // values + or -
-	 * @returns quantity
+	 * @returns {boolean} quantity
 	 */
 	async changeQuantity(change) {
 		const initialCount = await this.$cartCount().getText();
 		await this.elementClick(this.$quantityChange(change));
-		await this.spinnerWait()
+		await this.spinnerWait();
 		await browser.pause(1000);
 		const finalCount = await this.$cartCount().getText();
 		return finalCount != initialCount;
 	}
 
 	/**
-	 * Resetting the cart by clicking on reset cart button
+	 * Resetting the cart 
 	 */
 	async resetCart() {
 		await this.elementClick(this.$commonButton("Reset cart"));
@@ -50,15 +50,16 @@ class CartPage extends CommonPage {
 	}
 
 	/**
-	 * Clicking on proceed to checkout by clicking on proceed to checkout button
+	 * Clicking on proceed to checkout
 	 */
 	async proceedToCheckout() {
 		await this.elementClick(this.$commonButton("Proceed to Checkout"));
 		await this.$commonHeader("Payment Gateway").waitForDisplayed({ timeoutMsg: 'Expect checkout header should displayed' });
 	}
+	
 	/**
 	 * Calculating the total product price
-	 * @returns boolean
+	 * @returns {boolean} 
 	 */
 	async totalProductPrice() {
 		let product_count = await this.$$totalProduct().length;
