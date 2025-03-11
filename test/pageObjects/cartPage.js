@@ -46,7 +46,7 @@ class CartPage extends CommonPage {
 	 */
 	async resetCart() {
 		await this.elementClick(this.$button("Reset cart"));
-		await this.$commonHeader("Your Cart feels lonely.").waitForDisplayed({ timeoutMsg: 'Expect cart header should displayed' });
+		await this.$header("Your Cart feels lonely.").waitForDisplayed({ timeoutMsg: 'Expect cart header should displayed' });
 	}
 
 	/**
@@ -54,7 +54,7 @@ class CartPage extends CommonPage {
 	 */
 	async proceedToCheckout() {
 		await this.elementClick(this.$button("Proceed to Checkout"));
-		await this.$commonHeader("Payment Gateway").waitForDisplayed({ timeoutMsg: 'Expect checkout header should displayed' });
+		await this.$header("Payment Gateway").waitForDisplayed({ timeoutMsg: 'Expect checkout header should displayed' });
 	}
 
 	/**
@@ -72,6 +72,10 @@ class CartPage extends CommonPage {
 		let subTotal = await this.$subtotal().getText();
 		let subTotalPrice = subTotal.replace('$', '').trim();
 		return total_price == subTotalPrice;
+	}
+	async continueShopping() {
+		await this.elementClick(this.$button("Continue Shopping"));
+		await this.$header("Products").waitForDisplayed({ timeoutMsg: 'Expect home header should displayed' });
 	}
 }
 export default new CartPage();

@@ -7,7 +7,7 @@ export default class CommonPage {
         this.$spinner = () => $('//div[@class="animate-spin rounded-full h-32 w-32 border-b-2 border-gray-900"]');
         this.$componentHeader = () => $('//h1[text()="Explore Components"]');
         this.$button = (text) => $(`//button[text()="${text}"]`);
-        this.$commonHeader = (header) => $(`//h1[text()="${header}"]`);
+        this.$header = (header) => $(`//h1[text()="${header}"]`);
     }
 
     /**
@@ -52,7 +52,7 @@ export default class CommonPage {
         await element.waitForDisplayed({ timeoutMsg: 'Button not displayed' });
         await element.click();
     }
-    
+
     /**
      * Waiting for spinner to disappear
      */

@@ -68,7 +68,7 @@ class LandingPage extends CommonPage {
         // await this.spinnerWait();
         await this.elementClick(this.$shopByCategory());
         await this.elementClick(this.$selectCategory(category));
-        await this.$commonHeader("Products").waitForDisplayed({ timeoutMsg: 'Product not displayed' });
+        await this.$header("Products").waitForDisplayed({ timeoutMsg: 'Product not displayed' });
     }
 
     /**
@@ -78,7 +78,7 @@ class LandingPage extends CommonPage {
         await this.elementClick(this.$newArriveProduct());
         await this.$randomProductHeader().waitForDisplayed({ timeoutMsg: 'Product not displayed' });
     }
-    
+
     /**
      * Selecting the "Category banner" in homepage and clicking on the "Shop now" button from the banner
      * @param {*} category 

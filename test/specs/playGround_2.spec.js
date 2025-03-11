@@ -27,7 +27,7 @@ describe('TC011 - Verify if the user can reset the cart', () => {
 
 	it('Verify user can reset the cart by clicking on reset cart button', async () => {
 		await cartPage.resetCart();
-		await expect(cartPage.$commonHeader("Your Cart feels lonely.")).withContext('Expect cart homeHeader should displayed').toBeDisplayed();
+		await expect(cartPage.$header("Your Cart feels lonely.")).withContext('Expect cart homeHeader should displayed').toBeDisplayed();
 	})
 
 	afterAll(async () => {
@@ -59,7 +59,7 @@ describe('TC0013 - Verify the Proceed to checkout button', () => {
 
 	it('Verify user can click on proceed to checkout button', async () => {
 		await cartPage.proceedToCheckout();
-		await expect(cartPage.$commonHeader("Payment Gateway")).withContext('Expect checkout homeHeader should displayed').toBeDisplayed();
+		await expect(cartPage.$header("Payment Gateway")).withContext('Expect checkout homeHeader should displayed').toBeDisplayed();
 
 	})
 
@@ -78,7 +78,7 @@ describe('TC0014 - Verify the Contact tab', () => {
 
 	it('Navigate to contact tab', async () => {
 		await landingPage.clickNavItem(`Contact`);
-		await expect(landingPage.$commonHeader("Contact")).withContext('Expect contact homeHeader should displayed').toBeDisplayed();
+		await expect(landingPage.$header("Contact")).withContext('Expect contact homeHeader should displayed').toBeDisplayed();
 	})
 
 	it('Fill the forms', async () => {
@@ -135,4 +135,41 @@ describe('TC0016 - Verify the subtotal amount is equal to sum of each product pr
 		await landingPage.browserClose();
 	})
 
+})
+
+describe('TC0017 - Verify the continue shopping button after resetting the cart', () => {
+	it(`Land to "${testData.url}"`, async () => {
+		await landingPage.loadUrl(testData.url);
+		await expect(landingPage.$homeHeader()).withContext('Expect url should launch successfully').toBeDisplayed();
+	});
+
+	it('Verify login to the e-commerce by clicking on profile icon dropdown on top right side of the screen', async () => {
+		await landingPage.login();
+		await expect(landingPage.$profileFloat()).withContext('Expect user login successfully').toBeDisplayed();
+	});
+
+	it('Click on  "Shop by Category" menu and select a category "Laptops"', async () => {
+		await landingPage.shopByCategory('Laptops');
+		await expect(landingPage.$cartHeader()).withContext('Expect cart home header should displayed').toBeDisplayed();
+	})
+
+	it('Select first product from Laptop category', async () => {
+		await categoryPage.addProductToCart();
+		await expect(categoryPage.$addCartAlert()).withContext('Expect "Added to cart" should displayed').toBeDisplayed();
+	})
+
+	it('Verify user should navigate to "Cart page" clicking "Cart" icon', async () => {
+		await cartPage.goToCartPage();
+		await expect(cartPage.$cartHeader()).withContext('Expect cart home header should displayed').toBeDisplayed();
+	})
+
+	it('Verify user can reset the cart by clicking on reset cart button', async () => {
+		await cartPage.resetCart();
+		await expect(cartPage.$header("Your Cart feels lonely.")).withContext('Expect cart homeHeader should displayed').toBeDisplayed();
+	})
+
+	it('Click on the "Continue Shopping" button', async () => {
+		await cartPage.continueShopping();
+		await expect(landingPage.$header("Products")).withContext('Expect user navigate to product page').toBeDisplayed();
+	})
 })
