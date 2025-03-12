@@ -36,7 +36,7 @@ describe('TC011 - Verify if the user can reset the cart', () => {
 
 })
 
-describe('TC0013 - Verify the Proceed to checkout button', () => {
+describe('TC013 - Verify the Proceed to checkout button', () => {
 	it(`Land to "${testData.url}"`, async () => {
 		await landingPage.loadUrl(testData.url);
 		await expect(landingPage.$homeHeader()).withContext('Expect url should launch successfully').toBeDisplayed();
@@ -65,7 +65,7 @@ describe('TC0013 - Verify the Proceed to checkout button', () => {
 
 })
 
-describe('TC0014 - Verify the Contact tab', () => {
+describe('TC014 - Verify the Contact tab', () => {
 	it(`Land to "${testData.url}"`, async () => {
 		await landingPage.loadUrl(testData.url);
 		await expect(landingPage.$homeHeader()).withContext('Expect url should launch successfully').toBeDisplayed();
@@ -88,7 +88,7 @@ describe('TC0014 - Verify the Contact tab', () => {
 	})
 })
 
-describe('TC0016 - Verify the subtotal amount is equal to sum of each product price', () => {
+describe('TC016 - Verify the subtotal amount is equal to sum of each product price', () => {
 	it(`Land to "${testData.url}"`, async () => {
 		await landingPage.loadUrl(testData.url);
 		await expect(landingPage.$homeHeader()).withContext('Expect url should launch successfully').toBeDisplayed();
@@ -137,7 +137,7 @@ describe('TC0016 - Verify the subtotal amount is equal to sum of each product pr
 
 })
 
-describe('TC0017 - Verify the continue shopping button after resetting the cart', () => {
+describe('TC017 - Verify the continue shopping button after resetting the cart', () => {
 	it(`Land to "${testData.url}"`, async () => {
 		await landingPage.loadUrl(testData.url);
 		await expect(landingPage.$homeHeader()).withContext('Expect url should launch successfully').toBeDisplayed();
@@ -172,4 +172,55 @@ describe('TC0017 - Verify the continue shopping button after resetting the cart'
 		await cartPage.continueShopping();
 		await expect(landingPage.$header("Products")).withContext('Expect user navigate to product page').toBeDisplayed();
 	})
+
+	afterAll(async() =>{
+		await landingPage.browserClose()
+	})
 })
+
+describe('TC018 - Verify the continue shopping button in about tab',()=> {
+	it(`Land to "${testData.url}"`, async () => {
+		await landingPage.loadUrl(testData.url);
+		await expect(landingPage.$homeHeader()).withContext('Expect url should launch successfully').toBeDisplayed();
+	});
+
+	it('Verify login to the e-commerce by clicking on profile icon dropdown on top right side of the screen', async () => {
+		await landingPage.login();
+		await expect(landingPage.$profileFloat()).withContext('Expect user login successfully').toBeDisplayed();
+	});
+
+	it('Verify that user can navigate to "About Page" by clicking about button from navigate',async () => {
+		await landingPage.$navItem("About");
+		await expect(landingPage.$header("About")).withContext('Expect header should display successfully').toBeDisplayed();
+	})
+
+	afterAll(async() =>{
+		await landingPage.browserClose()
+	})
+})
+
+describe('TC019 - Verify if the user is able to add the product to the wishlist',() =>{
+	it(`Land to "${testData.url}"`, async () => {
+		await landingPage.loadUrl(testData.url);
+		await expect(landingPage.$homeHeader()).withContext('Expect url should launch successfully').toBeDisplayed();
+	});
+
+	it('Verify login to the e-commerce by clicking on profile icon dropdown on top right side of the screen', async () => {
+		await landingPage.login();
+		await expect(landingPage.$profileFloat()).withContext('Expect user login successfully').toBeDisplayed();
+	});
+
+	it('Click on  "Shop by Category" menu and select a category "Mobiles"', async () => {
+			await landingPage.shopByCategory('Mobiles');
+			await expect(landingPage.$cartHeader()).withContext('Expect cart home header should displayed').toBeDisplayed();
+		})
+	it('Select first product from "Mobile" category and add to wishlist', async () => {
+			await categoryPage.productWishlist();
+			await expect(categoryPage.$wishListAlert()).withContext('Expect "Added to cart" should displayed').toBeDisplayed();
+		})
+	
+	afterAll(async() =>{
+		await landingPage.browserClose()
+	})
+})
+

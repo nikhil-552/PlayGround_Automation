@@ -8,6 +8,8 @@ class CategoryPage extends CommonPage {
 		 */
 		this.$$productAddCart = () => $$('/div[@class="w-full"]//button[text()="Add to Cart "]');
 		this.$addCartAlert = () => $('//div[@role="alert"]//div[text()="Added Successfully!"]');
+		this.$whishListButton = () => $('(//button[text()="Wish List "])[1]');
+		this.$wishListAlert = () => $('//div[text()="Product added to wish List"]')
 	}
 	/**
 	 * Methods
@@ -20,5 +22,11 @@ class CategoryPage extends CommonPage {
 		await this.buttonClick(this.$$productAddCart()[0]);
 		await this.$addCartAlert().waitForDisplayed({ timeoutMsg: 'Added to cart alert not displayed' });
 	}
+
+	async productWishlist() {
+		await this.buttonClick(this.$whishListButton());
+		(await this.$wishListAlert()).waitForDisplayed({timeoutMsg: 'Added to wishlist alert displayed'})
+	}
+
 }
 export default new CategoryPage();
