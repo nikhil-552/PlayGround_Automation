@@ -1,4 +1,5 @@
 import CommonPage from "./commonPage.js";
+import testData from "../testData/playGround.json" assert{ type: 'json' };
 
 class LandingPage extends CommonPage {
     constructor() {
@@ -34,8 +35,8 @@ class LandingPage extends CommonPage {
     async login() {
         await this.elementClick(this.$profileButton());
         await this.elementClick(this.$loginButton());
-        await this.inputTextbox(this.$loginForm('email'), 'testData.email');
-        await this.inputTextbox(this.$loginForm('password'), 'testData.password');
+        await this.inputTextbox(this.$loginForm('email'), testData.email);
+        await this.inputTextbox(this.$loginForm('password'), testData.password);
         await this.buttonClick(this.$button("Login"));
         await this.$profileFloat().waitForDisplayed({ timeoutMsg: 'Login was unsuccessful' });
     }
