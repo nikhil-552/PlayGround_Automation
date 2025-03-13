@@ -10,10 +10,10 @@ class ShopPage extends CommonPage {
 		this.$filterOptions = (option) => $(`//input[@id="${option}"]`);
 		this.$$productsName = () => $$('//h2[@class="text-lg font-bold text-gray-800"]');
 	}
+	
 	/**
 	 * Methods
 	 */
-
 	/**
 	 * Filter the products by category and option
 	 * @param {string} category - The category to filter by
@@ -35,8 +35,6 @@ class ShopPage extends CommonPage {
 		}
 		return names;
 	}
-
-
 }
 
 export default new ShopPage();

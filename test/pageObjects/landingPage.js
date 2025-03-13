@@ -40,9 +40,7 @@ class LandingPage extends CommonPage {
         await this.buttonClick(this.$button("Login"));
         await this.$profileFloat().waitForDisplayed({ timeoutMsg: 'Login was unsuccessful' });
     }
-    /**
-     * Methods
-     */
+
     /**
      * Clicking on item from navigation bar
      * @param {string} item 
@@ -66,7 +64,6 @@ class LandingPage extends CommonPage {
      * @param {string} category
      */
     async shopByCategory(category) {
-        // await this.spinnerWait();
         await this.elementClick(this.$shopByCategory());
         await this.elementClick(this.$selectCategory(category));
         await this.$header("Products").waitForDisplayed({ timeoutMsg: 'Product not displayed' });
@@ -96,8 +93,6 @@ class LandingPage extends CommonPage {
         await this.elementClick(this.$randomProductAddToCart());
         await this.$addCartAlert().waitForDisplayed({ timeoutMsg: 'Added to cart alert should displayed' });
     }
-
-
 }
 
 export default new LandingPage();

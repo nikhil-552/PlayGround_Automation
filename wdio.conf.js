@@ -32,7 +32,7 @@ export const config = {
 	// will be called from there.
 	//
 	specs:
-			//  ['./test/specs/**/playGround_1.js'],
+			//  ['./test/specs/playGround_1.spec.js'],
 			 ['./test/specs/playGround_2.spec.js'],
 	// Patterns to exclude.
 	exclude: [

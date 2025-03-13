@@ -108,7 +108,7 @@ describe('TC004 - Verify if the user is able to search the product using the sea
     });
 });
 
-describe('TC005- Verify if the user is able to  click on "Shop now" option ', () => {
+describe('TC005- Verify the user is able to  click on "Shop now" option ', () => {
     it(`Land to ""${testData.url}""`, async () => {
         await landingPage.loadUrl(testData.url);
         await expect(landingPage.$homeHeader()).withContext('Expect user should land to the landing page').toBeDisplayed();
@@ -133,7 +133,7 @@ describe('TC005- Verify if the user is able to  click on "Shop now" option ', ()
     });
 })
 
-describe('TC006-Verify if the user is able to click on a product to buy', () => {
+describe('TC006-Verify the user is able to click on a product to buy', () => {
     it(`Land to "${testData.url}"`, async () => {
         await landingPage.loadUrl(testData.url);
         await expect(landingPage.$homeHeader()).withContext('Expect user should land to the landing page').toBeDisplayed();
@@ -153,7 +153,7 @@ describe('TC006-Verify if the user is able to click on a product to buy', () => 
     });
 })
 
-describe('TC007 - Verify if the user is able to add the product to the cart', () => {
+describe('TC007 - Verify the user is able to add the product to the cart', () => {
     it(`Land to "${testData.url}"`, async () => {
         await landingPage.loadUrl(testData.url);
         await expect(landingPage.$homeHeader()).withContext('Expect user should land to the landing page').toBeDisplayed();
@@ -164,7 +164,7 @@ describe('TC007 - Verify if the user is able to add the product to the cart', ()
         await expect(landingPage.$profileFloat()).withContext('Expect user should login successfully').toBeDisplayed();
     });
 
-    it('Verify the user can Add 3rd product from the "New Arrivals" courosal to the cart', async () => {
+    it('Verify the user can add 3rd product from the "New Arrivals" courosal to the cart', async () => {
         await landingPage.addToCart();
         await expect(landingPage.$addCartAlert()).withContext('Expect "Added to cart" should displayed').toBeDisplayed();
     })
@@ -173,7 +173,7 @@ describe('TC007 - Verify if the user is able to add the product to the cart', ()
     });
 })
 
-describe('TC008 - Verify if the user can add multiple quantity of the same product to the cart', () => {
+describe('TC008 - Verify the user can add multiple quantity of the same product to the cart', () => {
     it(`Land to "${testData.url}"`, async () => {
         await landingPage.loadUrl(testData.url);
         await expect(landingPage.$homeHeader()).withContext('Expect user should land to the landing page').toBeDisplayed();
@@ -204,7 +204,7 @@ describe('TC008 - Verify if the user can add multiple quantity of the same produ
     });
 })
 
-describe('TC009 - Verify if the user can reduce quantity of the same product from the cart', () => {
+describe('TC009 - Verify the user can reduce quantity of the same product from the cart', () => {
     it(`Land to "${testData.url}"`, async () => {
         await landingPage.loadUrl(testData.url);
         await expect(landingPage.$homeHeader()).withContext('Expect user should land to the landing page').toBeDisplayed();
@@ -239,7 +239,7 @@ describe('TC009 - Verify if the user can reduce quantity of the same product fro
     })
 })
 
-describe('TC0010 - Verify if the user can add multiple product to the cart', () => {
+describe('TC0010 - Verify the user can add multiple product to the cart', () => {
     it(`Land to ""${testData.url}""`, async () => {
         await landingPage.loadUrl(testData.url);
         await expect(landingPage.$homeHeader()).withContext('Expect url should launch successfully').toBeDisplayed();

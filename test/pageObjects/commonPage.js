@@ -16,6 +16,7 @@ export default class CommonPage {
 
     /**
      * Load the landing page
+     * @param {string} url
      */
     async loadUrl(url) {
         await browser.url(url);

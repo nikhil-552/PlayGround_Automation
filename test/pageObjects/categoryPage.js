@@ -23,9 +23,12 @@ class CategoryPage extends CommonPage {
 		await this.$addCartAlert().waitForDisplayed({ timeoutMsg: 'Added to cart alert not displayed' });
 	}
 
+	/**
+	 * Add product to wishlist
+	 */
 	async productWishlist() {
 		await this.buttonClick(this.$whishListButton());
-		(await this.$wishListAlert()).waitForDisplayed({timeoutMsg: 'Added to wishlist alert displayed'})
+		await this.$wishListAlert().waitForDisplayed({timeoutMsg: 'Added to wishlist alert displayed'});
 	}
 
 }

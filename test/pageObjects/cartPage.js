@@ -59,7 +59,7 @@ class CartPage extends CommonPage {
 
 	/**
 	 * Calculating the total product price
-	 * @returns {boolean} 
+	 * @returns {boolean} True or False
 	 */
 	async totalProductPrice() {
 		let product_count = await this.$$totalProduct().length;
@@ -73,6 +73,10 @@ class CartPage extends CommonPage {
 		let subTotalPrice = subTotal.replace('$', '').trim();
 		return total_price == subTotalPrice;
 	}
+
+	/**
+	 * Clicking on continue shopping
+	 */
 	async continueShopping() {
 		await this.elementClick(this.$button("Continue Shopping"));
 		await this.$header("Products").waitForDisplayed({ timeoutMsg: 'Expect home header should displayed' });

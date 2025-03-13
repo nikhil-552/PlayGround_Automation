@@ -1,12 +1,12 @@
 import landingPage from '../pageObjects/landingPage.js';
 import cartPage from '../pageObjects/cartPage.js';
-import data from '../testData/playGround.json' assert { type: 'json' };
+import testData from '../testData/playGround.json' assert { type: 'json' };
 import categoryPage from '../pageObjects/categoryPage.js';
 import contactPage from '../pageObjects/contactPage.js';
 
-describe('TC011 - Verify if the user can reset the cart', () => {
-	it(`Land to "${data.url}"`, async () => {
-		await landingPage.loadUrl(data.url);
+describe('TC011 - Verify the user can reset the cart', () => {
+	it(`Land to "${testData.url}"`, async () => {
+		await landingPage.loadUrl(testData.url);
 		await expect(landingPage.$homeHeader()).withContext('Expect url should launch successfully').toBeDisplayed();
 	});
 
@@ -37,8 +37,8 @@ describe('TC011 - Verify if the user can reset the cart', () => {
 })
 
 describe('TC013 - Verify the Proceed to checkout button', () => {
-	it(`Land to "${data.url}"`, async () => {
-		await landingPage.loadUrl(data.url);
+	it(`Land to "${testData.url}"`, async () => {
+		await landingPage.loadUrl(testData.url);
 		await expect(landingPage.$homeHeader()).withContext('Expect url should launch successfully').toBeDisplayed();
 	});
 
@@ -66,8 +66,8 @@ describe('TC013 - Verify the Proceed to checkout button', () => {
 })
 
 describe('TC014 - Verify the Contact tab', () => {
-	it(`Land to "${data.url}"`, async () => {
-		await landingPage.loadUrl(data.url);
+	it(`Land to "${testData.url}"`, async () => {
+		await landingPage.loadUrl(testData.url);
 		await expect(landingPage.$homeHeader()).withContext('Expect url should launch successfully').toBeDisplayed();
 	});
 
@@ -89,8 +89,8 @@ describe('TC014 - Verify the Contact tab', () => {
 })
 
 describe('TC016 - Verify the subtotal amount is equal to sum of each product price', () => {
-	it(`Land to "${data.url}"`, async () => {
-		await landingPage.loadUrl(data.url);
+	it(`Land to "${testData.url}"`, async () => {
+		await landingPage.loadUrl(testData.url);
 		await expect(landingPage.$homeHeader()).withContext('Expect url should launch successfully').toBeDisplayed();
 	});
 
@@ -129,8 +129,6 @@ describe('TC016 - Verify the subtotal amount is equal to sum of each product pri
 		expect(subtotal).withContext(`Expect subtotal amount is equal to sum of each product price`).toBe(true);
 	})
 
-
-
 	afterAll(async () => {
 		await landingPage.browserClose();
 	})
@@ -138,8 +136,8 @@ describe('TC016 - Verify the subtotal amount is equal to sum of each product pri
 })
 
 describe('TC017 - Verify the continue shopping button after resetting the cart', () => {
-	it(`Land to "${data.url}"`, async () => {
-		await landingPage.loadUrl(data.url);
+	it(`Land to "${testData.url}"`, async () => {
+		await landingPage.loadUrl(testData.url);
 		await expect(landingPage.$homeHeader()).withContext('Expect url should launch successfully').toBeDisplayed();
 	});
 
@@ -173,14 +171,14 @@ describe('TC017 - Verify the continue shopping button after resetting the cart',
 		await expect(landingPage.$header("Products")).withContext('Expect user navigate to product page').toBeDisplayed();
 	})
 
-	afterAll(async() =>{
+	afterAll(async () => {
 		await landingPage.browserClose()
 	})
 })
 
-describe('TC018 - Verify the continue shopping button in about tab',()=> {
-	it(`Land to "${data.url}"`, async () => {
-		await landingPage.loadUrl(data.url);
+describe('TC018 - Verify the continue shopping button in about tab', () => {
+	it(`Land to "${testData.url}"`, async () => {
+		await landingPage.loadUrl(testData.url);
 		await expect(landingPage.$homeHeader()).withContext('Expect url should launch successfully').toBeDisplayed();
 	});
 
@@ -189,19 +187,19 @@ describe('TC018 - Verify the continue shopping button in about tab',()=> {
 		await expect(landingPage.$profileFloat()).withContext('Expect user login successfully').toBeDisplayed();
 	});
 
-	it('Verify that user can navigate to "About Page" by clicking about button from navigate',async () => {
+	it('Verify that user can navigate to "About Page" by clicking about button from navigate', async () => {
 		await landingPage.$navItem("About");
 		await expect(landingPage.$header("About")).withContext('Expect header should display successfully').toBeDisplayed();
 	})
 
-	afterAll(async() =>{
+	afterAll(async () => {
 		await landingPage.browserClose()
 	})
 })
 
-describe('TC019 - Verify if the user is able to add the product to the wishlist',() =>{
-	it(`Land to "${data.url}"`, async () => {
-		await landingPage.loadUrl(data.url);
+describe('TC019 - Verify the user is able to add the product to the wishlist', () => {
+	it(`Land to "${testData.url}"`, async () => {
+		await landingPage.loadUrl(testData.url);
 		await expect(landingPage.$homeHeader()).withContext('Expect url should launch successfully').toBeDisplayed();
 	});
 
@@ -211,16 +209,17 @@ describe('TC019 - Verify if the user is able to add the product to the wishlist'
 	});
 
 	it('Click on  "Shop by Category" menu and select a category "Mobiles"', async () => {
-			await landingPage.shopByCategory('Mobiles');
-			await expect(landingPage.$cartHeader()).withContext('Expect cart home header should displayed').toBeDisplayed();
-		})
+		await landingPage.shopByCategory('Mobiles');
+		await expect(landingPage.$cartHeader()).withContext('Expect cart home header should displayed').toBeDisplayed();
+	})
 	it('Select first product from "Mobile" category and add to wishlist', async () => {
-			await categoryPage.productWishlist();
-			await expect(categoryPage.$wishListAlert()).withContext('Expect "Added to cart" should displayed').toBeDisplayed();
-		})
-	
-	afterAll(async() =>{
+		await categoryPage.productWishlist();
+		await expect(categoryPage.$wishListAlert()).withContext('Expect "Added to cart" should displayed').toBeDisplayed();
+	})
+
+	afterAll(async () => {
 		await landingPage.browserClose()
 	})
 })
+
 

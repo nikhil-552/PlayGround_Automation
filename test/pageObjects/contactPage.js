@@ -21,7 +21,7 @@ class ContactPage extends CommonPage {
 	 * @param {string} formValue 
 	 */
 	async fillContactForm() {
-		let length = testData.ContactForms.length;
+		let length = testData.ContactForms.length();
 		for (let i = 0; i < length; i++) {
 			await this.inputTextbox(this.$formBoxes(testData.ContactForms[i]), testData.ContactData[i]);
 		}
