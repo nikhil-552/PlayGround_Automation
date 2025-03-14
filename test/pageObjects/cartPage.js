@@ -13,6 +13,7 @@ class CartPage extends CommonPage {
 		this.$$totalProduct = () => $$('//div[@class="mt-5"]/div');
 		this.$productPrice = (count) => $(`((//div[@class="mt-5"]/div)[${count}]//p)[2]`);
 		this.$subtotal = () => $('//p[text()="Subtotal"]/span/text()[2]');
+		this.$productName = () => $('//div[@class="mt-5"]//h1')
 	}
 
 	/**
@@ -72,6 +73,15 @@ class CartPage extends CommonPage {
 		let subTotal = await this.$subtotal().getText();
 		let subTotalPrice = subTotal.replace('$', '').trim();
 		return total_price == subTotalPrice;
+	}
+
+	/**
+	 * Getting the product name
+	 * @returns {string} productName
+	 */
+	async getProductDetail() {
+		let productName = await this.$productName().getText();
+		return productName
 	}
 
 	/**

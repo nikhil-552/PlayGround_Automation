@@ -7,8 +7,11 @@ class LandingPage extends CommonPage {
         /**
          * Element
          */
-        this.$profileButton = () => $('(//div[@class="max-w-container mx-auto"]//div[@class="relative"])[2]');
+        this.$profileIcon = () => $('(//div[@class="max-w-container mx-auto"]//div[@class="relative"])[2]');
         this.$loginButton = () => $('//li[text()="Login"]/..');
+        this.$profileButton = () => $('//ul/a[@href="/profile"]');
+        this.$logout = () => $('//ul/li[text()="Log Out"]');
+        this.$order = () => $('//ul/a[@href="/orders"]');
         this.$loginForm = (name) => $(`//input[@id="${name}"]`);
         this.$profileFloat = () => $('//p[text()="Profile"]/../parent::a');
         this.$navItem = (item) => $(`//a[text()="${item}"]/..`);
@@ -23,6 +26,8 @@ class LandingPage extends CommonPage {
         this.$categoryShopNow = (category) => $(`//h2[contains(text(), "${category}") and contains(normalize-space(), "Sale")]/..//button[text()="Shop Now"]`);
         this.$randomProductAddToCart = () => $('//div[text()="New Arrivals"]/..//div[@data-index="2"]//button[text()="Add to Cart "]');
         this.$addCartAlert = () => $('//div[@role="alert"]//div[text()="Added Succesfully!"]');
+        this.$logoutAlert = () => $('//div[text()="Logout Successful!"]');
+
 
     }
     /**
@@ -33,7 +38,7 @@ class LandingPage extends CommonPage {
      * Clicking on the "Profile Button" then "Login Button" and fill data to the textbox and clicking on login button
      */
     async login() {
-        await this.elementClick(this.$profileButton());
+        await this.elementClick(this.$profileIcon());
         await this.elementClick(this.$loginButton());
         await this.inputTextbox(this.$loginForm('email'), testData.email);
         await this.inputTextbox(this.$loginForm('password'), testData.password);
@@ -92,6 +97,34 @@ class LandingPage extends CommonPage {
     async addToCart() {
         await this.elementClick(this.$randomProductAddToCart());
         await this.$addCartAlert().waitForDisplayed({ timeoutMsg: 'Added to cart alert should displayed' });
+    }
+    /**
+     * Navigating to the profile page
+     */
+
+    async goToProfile() {
+        await this.elementClick(this.$profileIcon());
+        await this.elementClick(this.$profileButton());
+        await this.$h2Header("User Profile").waitForDisplayed({ timeoutMsg: 'Profile page not displayed' });
+    }
+
+    /**
+     * going to the order page
+     */
+    async goToOrder() {
+        await this.elementClick(this.$profileIcon());
+        await this.elementClick(this.$order());
+    }
+
+    /**
+     * Logging out
+     */
+    async logout() {
+        await this.elementClick(this.$profileIcon());
+        await this.elementClick(this.$logout());
+        if (await browser.isAlertOpen()) {
+            await browser.acceptAlert();
+        }
     }
 }
 

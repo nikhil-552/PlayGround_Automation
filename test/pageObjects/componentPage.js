@@ -39,6 +39,5 @@ class ComponentPage extends CommonPage {
 		await this.elementClick(this.$popUpClose());
 		await this.$button("Open Pop Window").waitForDisplayed({ timeoutMsg: 'Pop up button is not Displayed' })
 	}
-
 }
 export default new ComponentPage();

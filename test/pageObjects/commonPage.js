@@ -8,6 +8,8 @@ export default class CommonPage {
         this.$componentHeader = () => $('//h1[text()="Explore Components"]');
         this.$button = (text) => $(`//button[text()="${text}"]`);
         this.$header = (header) => $(`//h1[text()="${header}"]`);
+        this.$wishListButton = () => $('//a[@href="/wishlist"]');
+        this.$h2Header = (header) => $(`//h2[text()="${header}"]`);
     }
 
     /**
@@ -67,5 +69,13 @@ export default class CommonPage {
     async browserClose() {
         await browser.deleteAllCookies();
         await browser.reloadSession();
+    }
+
+    /**
+     * Go to wishlist
+     */
+    async goToWhishList() {
+        await this.buttonClick(this.$wishListButton());
+        await this.$header("Wishlist").waitForDisplayed({ timeoutMsg: 'Wishlist header displayed' });
     }
 }

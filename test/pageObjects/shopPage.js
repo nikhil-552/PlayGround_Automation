@@ -10,7 +10,7 @@ class ShopPage extends CommonPage {
 		this.$filterOptions = (option) => $(`//input[@id="${option}"]`);
 		this.$$productsName = () => $$('//h2[@class="text-lg font-bold text-gray-800"]');
 	}
-	
+
 	/**
 	 * Methods
 	 */
@@ -36,5 +36,4 @@ class ShopPage extends CommonPage {
 		return names;
 	}
 }
-
 export default new ShopPage();

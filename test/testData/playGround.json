@@ -3,5 +3,8 @@
 	"email":"optimalaces.2001@gmail.com",
 	"password":"Password@123",
 	"ContactForms":["Name","Email"],
-	"ContactData":["Name","test_email@email.com","Test Messege"]
+	"ContactData":["Name","test_email@email.com","Test Messege"],
+	"profileDetails":["Test Name","Female","India","Test Bio"],
+	"paymentForm":["Full Name","Email","Phone"],
+	"paymentData":["Test Name","test_email@email.com","1234567890","test Address"]
 }

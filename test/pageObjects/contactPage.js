@@ -11,7 +11,7 @@ class ContactPage extends CommonPage {
 		this.$messageBox = () => $('//p[text()="Messages"]/..//textarea');
 		this.$thankYouMessage = () => $('//p[contains(text(),"Thank you")]');
 	}
-	
+
 	/**
 	 * Methods
 	 */

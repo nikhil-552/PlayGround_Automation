@@ -14,12 +14,12 @@ class CategoryPage extends CommonPage {
 	/**
 	 * Methods
 	 */
-	
+
 	/**
 	 * Add product to cart from selected category
 	 */
 	async addProductToCart() {
-		await this.buttonClick(this.$$productAddCart()[0]);
+		await this.buttonClick(this.$button("Add to Cart "));
 		await this.$addCartAlert().waitForDisplayed({ timeoutMsg: 'Added to cart alert not displayed' });
 	}
 
@@ -28,7 +28,7 @@ class CategoryPage extends CommonPage {
 	 */
 	async productWishlist() {
 		await this.buttonClick(this.$whishListButton());
-		await this.$wishListAlert().waitForDisplayed({timeoutMsg: 'Added to wishlist alert displayed'});
+		await this.$wishListAlert().waitForDisplayed({ timeoutMsg: 'Added to wishlist alert displayed' });
 	}
 
 }
