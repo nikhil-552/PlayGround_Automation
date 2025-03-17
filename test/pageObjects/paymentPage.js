@@ -8,8 +8,8 @@ class PaymentPage extends CommonPage {
 		 */
 		super();
 		this.$formTextBox = (text) => $(`//label[text()="${text}"]/../input`);
-		this.$address = () => ('//label[text()="Address"]/../textarea');
-		this.$orderAlert = () => $('//div[text()="Order Placed Successfully!"]');
+		this.$address = () => $('//label[text()="Address"]/../textarea');
+		this.$orderAlert = () => $('//span[text()="Your order has been placed successfully!"]');
 		this.$orderedProduct = (product) => $(`(//div[@class="p-4"]//div//p[text()="${product}"])[1]`)
 	}
 	/**

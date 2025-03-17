@@ -409,11 +409,11 @@ describe('TC0026 - ', () => {
 
 	it('Click on the profile icon and select "My Orders"', async () => {
 		await landingPage.goToOrder();
-		await expect(orderPage.$header("My Orders")).withContext('Expect user navigate to order page').toBeDisplayed();
+		await expect(paymentPage.$header("My Orders")).withContext('Expect user navigate to order page').toBeDisplayed();
 	})
 
 	it('Verify the order page displays the ordered product', async () => {
-		await expect(paymentPage.$orderProduct(productName)).withContext('Expect user navigate to order page').toBeDisplayed();
+		await expect(paymentPage.$orderedProduct(productName)).withContext('Expect user navigate to order page').toBeDisplayed();
 	})
 
 	afterAll(async () => {
